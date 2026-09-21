@@ -28,8 +28,8 @@ public class FiltroTokenAcesso extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //Recuperar o token da requisição -> parametro request
-        String token = recuperarTokenRequisicao(request); //usamos o request
+        //recuperar o token da requisição
+        String token = recuperarTokenRequisicao(request);
 
         if(token != null){
             String email = tokenService.verificarToken(token);

@@ -24,4 +24,3 @@ public class TopicoSpecification {
         return (root, query, builder) -> (solucionados == null || !solucionados) ? null : builder.equal(root.get("status"), Status.RESOLVIDO);
     }
 }
-

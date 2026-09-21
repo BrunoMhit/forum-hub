@@ -27,7 +27,7 @@ public class ConfiguracoesSeguranca {
         return http
                 .authorizeHttpRequests(
                         req -> {
-                            req.requestMatchers("/login", "atualizar-token", "registrar", "verificar-conta").permitAll();
+                            req.requestMatchers("/login", "/atualizar-token", "/registrar", "verificar-conta").permitAll();
                             req.anyRequest().authenticated();
                         }
                 )
@@ -36,6 +36,7 @@ public class ConfiguracoesSeguranca {
                 .addFilterBefore(filtroTokenAcesso, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
     @Bean
     public PasswordEncoder encriptador(){
         return new BCryptPasswordEncoder();
