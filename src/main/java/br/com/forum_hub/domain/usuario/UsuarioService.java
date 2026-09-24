@@ -36,6 +36,7 @@ public class UsuarioService implements UserDetailsService {
     @Transactional
     public Usuario cadastrar(DadosCadastroUsuario dados) {
         var senhaCriptografada = passwordEncoder.encode(dados.senha());
+
         var perfil = perfilRepository.findByNome(PerfilNome.ESTUDANTE);
         var usuario = new Usuario(dados, senhaCriptografada, perfil);
 

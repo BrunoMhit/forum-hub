@@ -1,8 +1,6 @@
 package br.com.forum_hub.controller;
 
 import br.com.forum_hub.domain.perfil.DadosPerfil;
-import br.com.forum_hub.domain.topico.DadosCadastroTopico;
-import br.com.forum_hub.domain.topico.DadosListagemTopico;
 import br.com.forum_hub.domain.usuario.DadosAlteracaoSenha;
 import br.com.forum_hub.domain.usuario.DadosCadastroUsuario;
 import br.com.forum_hub.domain.usuario.DadosEdicaoUsuario;
@@ -64,7 +62,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/desativar")
-    public ResponseEntity<Void> banirUsuario(@AuthenticationPrincipal Usuario logado){
+    public ResponseEntity<Void> desativarUsuario(@AuthenticationPrincipal Usuario logado){
         usuarioService.desativarUsuario(logado);
         return ResponseEntity.noContent().build();
     }
