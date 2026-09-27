@@ -31,20 +31,20 @@ public class ConfiguracoesSeguranca {
                 .authorizeHttpRequests(
                         req -> {
                             req.requestMatchers("/login", "/atualizar-token", "/registrar", "verificar-conta").permitAll();
-                            req.requestMatchers(HttpMethod.GET,"/cursos").permitAll();
-                            req.requestMatchers(HttpMethod.GET,"/topicos/**").permitAll();
 
-                            req.requestMatchers(HttpMethod.POST,"/topicos").hasRole("ESTUDANTE");
-                            req.requestMatchers(HttpMethod.PUT,"/topicos").hasRole("ESTUDANTE");
-                            req.requestMatchers(HttpMethod.DELETE,"/topicos/**").hasRole("ESTUDANTE");
+                            req.requestMatchers(HttpMethod.GET, "/cursos").permitAll();
+                            req.requestMatchers(HttpMethod.GET, "/topicos/**").permitAll();
 
+                            req.requestMatchers(HttpMethod.POST, "/topicos").hasRole("ESTUDANTE");
+                            req.requestMatchers(HttpMethod.PUT, "/topicos").hasRole("ESTUDANTE");
+                            req.requestMatchers(HttpMethod.DELETE, "/topicos/**").hasRole("ESTUDANTE");
 
-                            req.requestMatchers(HttpMethod.PATCH,"/topicos/{idTopico}/respostas/**").hasAnyRole("INSTRUTOR","ESTUDANTE");
+                            req.requestMatchers(HttpMethod.PATCH, "/topicos/{idTopico}/respostas/**").hasAnyRole("INSTRUTOR", "ESTUDANTE");
 
+                            req.requestMatchers(HttpMethod.PATCH, "/topicos/**").hasRole("MODERADOR");
 
-                            req.requestMatchers(HttpMethod.PATCH,"/topicos/**").hasRole("MODERADOR");
-
-                            req.requestMatchers(HttpMethod.PATCH,"/adicionar-perfil/**").hasRole("ADMIN");
+                            req.requestMatchers(HttpMethod.PATCH, "/adicionar-perfil/**").hasRole("ADMIN");
+                            req.requestMatchers(HttpMethod.PATCH, "/reativar-conta/**").hasRole("ADMIN");
 
                             req.anyRequest().authenticated();
                         }
@@ -64,13 +64,12 @@ public class ConfiguracoesSeguranca {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-    //rolehierar é uma interface
+
     @Bean
     public RoleHierarchy hierarquiaPerfis(){
-        String hierarquia = "ROLE_ADMIN > ROLE_MODERADOR\n" +
-                "ROLE_MODERADOR > ROLE_INSTRUTOR\n" +
+        String hierarquia = "ROLE_ADMIN > ROLE_MODERADOR\n"+
+                "ROLE_MODERADOR > ROLE_INSTRUTOR\n"+
                 "ROLE_MODERADOR > ROLE_ESTUDANTE";
         return RoleHierarchyImpl.fromHierarchy(hierarquia);
     }
-
 }
