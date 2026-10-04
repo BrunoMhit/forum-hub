@@ -35,6 +35,7 @@ public class LoginGithubController {
     @GetMapping
     public ResponseEntity<Void> redirecionarGithub(){
         var url = loginGithubService.gerarUrl();
+
         var headers = new HttpHeaders();
         headers.setLocation(URI.create(url));
 
@@ -45,7 +46,7 @@ public class LoginGithubController {
     public ResponseEntity<DadosToken> autenticarUsuarioOAuth(@RequestParam String code){
         var email = loginGithubService.obterEmail(code);
 
-        var usuario = usuarioRepository.findByNomeUsuarioIgnoreCaseAndVerificadoTrueAndAtivoTrue(email)
+        var usuario = usuarioRepository.findByEmailIgnoreCaseAndVerificadoTrueAndAtivoTrue(email)
                 .orElseThrow();
         var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -55,5 +56,4 @@ public class LoginGithubController {
 
         return ResponseEntity.ok(new DadosToken(tokenAcesso, refreshToken));
     }
-
 }
