@@ -113,5 +113,4 @@ public class UsuarioService implements UserDetailsService {
 
         return totpService.gerarQrCode(logado);
     }
-
 }

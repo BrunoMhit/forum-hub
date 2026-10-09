@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 public class LoginGoogleService {
 
-    @Value("${google.oauth.cliente.id}")
+    @Value("${google.oauth.client.id}")
     private String clientId;
     @Value("${google.oauth.client.secret}")
     private String clientSecret;
@@ -26,7 +26,7 @@ public class LoginGoogleService {
     }
 
     public String gerarUrl(){
-        return "https://accounts.google.com/o/oauth2/v2/auth\n"+
+        return "https://accounts.google.com/o/oauth2/v2/auth"+
                 "?client_id="+clientId +
                 "&redirect_uri="+redirectUri +
                 "&scope=https://www.googleapis.com/auth/userinfo.email" +
