@@ -148,7 +148,7 @@ public class Usuario implements UserDetails {
     }
 
     public boolean isA2fAtiva() {
-        return this.isA2fAtiva();
+        return this.a2fAtiva;
     }
 
     public void ativarA2f() {

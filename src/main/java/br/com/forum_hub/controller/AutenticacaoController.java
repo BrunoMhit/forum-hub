@@ -1,6 +1,10 @@
 package br.com.forum_hub.controller;
 
-import br.com.forum_hub.domain.autenticacao.*;
+import br.com.forum_hub.domain.autenticacao.DadosA2F;
+import br.com.forum_hub.domain.autenticacao.DadosLogin;
+import br.com.forum_hub.domain.autenticacao.DadosRefreshToken;
+import br.com.forum_hub.domain.autenticacao.DadosToken;
+import br.com.forum_hub.domain.autenticacao.TokenService;
 import br.com.forum_hub.domain.usuario.Usuario;
 import br.com.forum_hub.domain.usuario.UsuarioRepository;
 import br.com.forum_hub.infra.seguranca.totp.TotpService;
@@ -36,7 +40,7 @@ public class AutenticacaoController {
 
         var usuario = (Usuario) authentication.getPrincipal();
         if(usuario.isA2fAtiva()){
-            return ResponseEntity.ok(new DadosToken( null, null, true));
+            return ResponseEntity.ok(new DadosToken(null, null, true));
         }
 
         String tokenAcesso = tokenService.gerarToken(usuario);
@@ -46,20 +50,17 @@ public class AutenticacaoController {
     }
 
     @PostMapping("/verificar-a2f")
-    public ResponseEntity<DadosToken> verificarSegundoFator(@Valid @RequestBody DadosA2f dadosA2f){
-
-        var usuario = usuarioRepository.findByNomeUsuarioIgnoreCaseAndVerificadoTrueAndAtivoTrue(dadosA2f.email())
+    public ResponseEntity<DadosToken> verificarSegundoFator(@Valid @RequestBody DadosA2F dadosA2F){
+        var usuario = usuarioRepository.findByEmailIgnoreCaseAndVerificadoTrueAndAtivoTrue(dadosA2F.email())
                 .orElseThrow();
-        var codigoValido = totpService.verificarCodigo(dadosA2f.codigo(), usuario);
-        if (!codigoValido){
+        var codigoValido = totpService.verificarCodigo(dadosA2F.codigo(), usuario);
+        if(!codigoValido){
             throw new BadCredentialsException("Código inválido");
         }
         String tokenAcesso = tokenService.gerarToken(usuario);
         String refreshToken = tokenService.gerarRefreshToken(usuario);
 
         return ResponseEntity.ok(new DadosToken(tokenAcesso, refreshToken, false));
-
-
     }
 
     @PostMapping("/atualizar-token")
