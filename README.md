@@ -20,6 +20,11 @@ O projeto foi utilizado durante meus estudos de segurança em aplicações Backe
 
 ## 🔑 Funcionalidades abordadas no projeto
 
+## 🎥 Visão geral do projeto desenvolvido
+
+O gif apresenta de maneira rápida a estrutura do ForumHub das implementações de autenticação e segurança desenvolvida.
+![Demonstração do projeto](docs/ForumHubDemo.gif)
+
 ### Autenticação e autorização de usuários
 
 - Cadastro e gerenciamento de usuários.
