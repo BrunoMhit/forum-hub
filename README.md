@@ -1,98 +1,85 @@
 
 # 🔐 Forum Hub — API REST com Spring Security
 
-O **Forum Hub** é um projeto de API REST desenvolvido com **Java e Spring Boot**, voltado ao gerenciamento de tópicos de um fórum fictício.
+O **Forum Hub** é uma API REST desenvolvida com **Java e Spring Boot** para gerenciamento de tópicos de um fórum fictício.
 
-O projeto foi utilizado durante meus estudos de segurança em aplicações Backend, acompanhando dois cursos da **Alura**, com foco na implementação de mecanismos de segurança, como autenticação e autorização.
+O projeto foi desenvolvido durante meus estudos em dois cursos da **Alura**, explorando mecanismos de autenticação, autorização e segurança de aplicações Backend com Spring Security.
 
-## 🚀 Tecnologias e conceitos utilizados
+## 🚀 Tecnologias utilizadas
 
-- Java
-- Spring Boot
-- Spring Security
-- Spring Data JPA
-- MySQL
-- JWT (JSON Web Token)
-- OAuth 2.0 e OpenID Connect (OIDC)
-- RestClient
-- Autenticação de dois fatores (2FA / TOTP)
-- Maven
+- **Backend:** Java, Spring Boot e Spring Data JPA
+- **Segurança:** Spring Security, JWT, OAuth 2.0, OpenID Connect (OIDC) e 2FA/TOTP
+- **Banco de dados:** MySQL
+- **Integrações:** RestClient e SMTP
+- **Ferramentas:** Maven e Postman
 
-## 🔑 Funcionalidades abordadas no projeto
+## 🔑 Funcionalidades e conceitos abordados
 
-## 🎥 Visão geral do projeto desenvolvido
-
-O gif apresenta de maneira rápida a estrutura do ForumHub das implementações de autenticação e segurança desenvolvida.
-![Demonstração do projeto](docs/ForumHubDemo.gif)
-
-### Autenticação e autorização de usuários
+### Autenticação e autorização
 
 - Cadastro e gerenciamento de usuários.
-- Criptografia de senhas.
-- Autenticação com tokens JWT.
+- Armazenamento de senhas com hash.
+- Autenticação Stateless com JWT.
 - Access Token e Refresh Token.
-- Configuração de autenticação Stateless.
 - Filtros de autenticação e validação de tokens.
-- Controle de acesso baseado em perfis, permissões e hierarquias.
+- Controle de acesso por perfis, permissões e hierarquia de papéis.
 
 ### Integrações e segurança
 
-- Fluxos de login externo com GitHub e Google utilizando OAuth 2.0.
+- Fluxos de autenticação externa com GitHub e Google utilizando OAuth 2.0.
 - Utilização de OpenID Connect (OIDC).
-- Comunicação com APIs externas utilizando RestClient.
-- Verificação de e-mail de usuários.
-- Autenticação de dois fatores com TOTP.
+- Comunicação com serviços externos utilizando RestClient.
+- Verificação de e-mail.
+- Autenticação de dois fatores (2FA) com TOTP.
 - Geração de QR Code e validação de códigos temporários.
 
-> **Observação:** algumas integrações externas dependem de configurações adicionais e credenciais próprias. Os fluxos ainda não foram integralmente testados em ambiente de execução.
+> **Nota:** algumas integrações externas dependem de credenciais e configurações adicionais. Os fluxos ainda não foram integralmente testados em ambiente de execução.
 
+## 🎥 Demonstração e capturas do projeto
 
-### 🔒 Fluxo de autenticação e autorização do usuário
+### Visão geral
 
-O projeto aborda diferentes mecanismos para controlar o acesso dos usuários à API Forum Hub:
+O GIF apresenta a estrutura do projeto e trechos das implementações de autenticação e segurança.
 
-- **Autenticação:** identificação do usuário por meio de suas credenciais, email e senha.
-- **JWT:** geração de tokens de acesso após a autenticação.
-- **Filtros de segurança:** validação dos tokens recebidos nas requisições dos usuaários.
-- **Refresh Token:** mecanismo para renovação do acesso sem exigir um novo login completo.
-- **Autorização:** controle das funcionalidades disponíveis de acordo com os perfis e permissões associados ao usuário.
+![Visão geral do Forum Hub](docs/ForumHubDemo.gif)
 
-Com o **Spring Security**, esses mecanismos permitem separar a identificação do usuário das regras que determinam quais recursos ele pode acessar, garantindo segurança e acesso corretos.
+### Requisição HTTP com Postman
 
+Exemplo de requisição `POST /topicos` com dados enviados em formato JSON.
 
-## ⚙️ Configurações e variáveis de ambiente
+![Exemplo de requisição POST no Postman](docs/CadastroTopico.jpg)
 
-O projeto utiliza **MySQL** para persistência de dados, **SMTP** para envio de e-mails e configurações de **OAuth 2.0** para autenticação com GitHub e Google.
+### Autorização OAuth 2.0 com GitHub
 
-Para utilizar as funcionalidades que dependem desses serviços, é necessário configurar as credenciais correspondentes.
+Tela de solicitação de autorização do aplicativo Fórum Hub no GitHub, ilustrando uma etapa do fluxo OAuth 2.0.
 
-### 1. Variáveis de ambiente
+![Tela de autorização OAuth do GitHub](docs/GithubAutorizacao.jpg)
 
-| Variável | Descrição                                                         |
-|---|-------------------------------------------------------------------|
-| `EMAIL_USERNAME` | E-mail utilizado pélo usuário para autenticação no servidor SMTP. |
-| `EMAIL_PASSWORD` | Senha ou credencial do usuário de aplicativo do serviço SMTP.     |
-| `GITHUB_CLIENT_ID` | Identificador do usua´rio OAuth do GitHub.                        |
-| `GITHUB_CLIENT_SECRET` | Segredo do usuário OAuth do GitHub.                               |
-| `GOOGLE_CLIENT_ID` | Identificador do usuário OAuth do Google.                         |
-| `GOOGLE_CLIENT_SECRET` | Segredo do usuário OAuth do Google.                               |
+## ⚙️ Configuração do projeto
 
-### 2. Configurando as variáveis no Windows
+O projeto utiliza MySQL para persistência de dados, SMTP para envio de e-mails e configurações OAuth 2.0 para integração com GitHub e Google.
 
-Para cadastrar as variáveis de ambiente:
+### Pré-requisitos
 
-1. Abra o menu Iniciar e pesquise por **Editar as variáveis de ambiente para sua conta**.
-2. Na seção **Variáveis de usuário**, clique em **Novo**.
-3. Informe o nome da variável, como `EMAIL_USERNAME`.
-4. No campo de valor, informe a credencial correspondente.
-5. Repita o procedimento para as demais variáveis necessárias.
-6. Reinicie o IntelliJ IDEA para que as alterações sejam reconhecidas.
+- JDK compatível com a versão definida no `pom.xml`.
+- MySQL.
+- Maven ou Maven Wrapper.
+- Credenciais dos serviços externos, quando necessárias.
 
-### 3. Configuração do application.properties
+### Variáveis de ambiente
 
-O Spring Boot utiliza a sintaxe `${NOME_DA_VARIAVEL}` para acessar variáveis de ambiente.
+| Variável | Finalidade |
+|---|---|
+| `DB_USERNAME` | Usuário do MySQL |
+| `DB_PASSWORD` | Senha do MySQL |
+| `EMAIL_USERNAME` | Conta utilizada no serviço SMTP |
+| `EMAIL_PASSWORD` | Credencial de autenticação SMTP |
+| `GITHUB_CLIENT_ID` | Identificador do cliente OAuth do GitHub |
+| `GITHUB_CLIENT_SECRET` | Segredo do cliente OAuth do GitHub |
+| `GOOGLE_CLIENT_ID` | Identificador do cliente OAuth do Google |
+| `GOOGLE_CLIENT_SECRET` | Segredo do cliente OAuth do Google |
 
-Configuração recomendada para que o usuário consiga rodar o projeto:
+Exemplo recomendado de configuração no `application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost/forum_hub?createDatabaseIfNotExist=true
@@ -113,28 +100,19 @@ google.oauth.client.id=${GOOGLE_CLIENT_ID}
 google.oauth.client.secret=${GOOGLE_CLIENT_SECRET}
 ```
 
-**Observação:** o exemplo acima também utiliza as variáveis `DB_USERNAME` e `DB_PASSWORD` para as credenciais do MySQL.
+> **Importante:** este é um exemplo de configuração recomendada. O arquivo `application.properties` do projeto deve ser ajustado para utilizar essas variáveis. As integrações OAuth e SMTP também exigem configuração nos respectivos serviços.
 
-Essa é uma configuração recomendada. Para utilizá-la, o arquivo `application.properties` do projeto também deverá ser ajustado.
+**Segurança:** não publique senhas, tokens ou Client Secrets no repositório.
 
-### 4. Cuidados com as credenciais
-
-- Não publique senhas, tokens ou Client Secrets no GitHub.
-- Utilize variáveis de ambiente para armazenar informações sensíveis.
-- Configure as credenciais de acordo com os serviços utilizados.
-- As integrações externas exigem configurações adicionais nos respectivos provedores.
-
-## 📚 Cursos estudados durante o projeto
+## 📚 Cursos utilizados como base
 
 Projeto desenvolvido durante os estudos dos cursos da **Alura**:
 
 - **Java e Spring Security: Proteja suas APIs REST.**
 - **Java e Spring Security: Login com GitHub, Google e autenticação de 2 fatores.**
 
-## 📌 Status do projeto
+## 📌 Status
 
-🚧 **Em desenvolvimento e documentação.**
+🚧 **Projeto de estudos em desenvolvimento e documentação.**
 
-Este repositório acompanha minha evolução nos estudos de Java Backend e segurança de aplicações.
-
-A documentação será ampliada com detalhes da arquitetura, exemplos de endpoints, imagens e demonstrações do projeto.
+Este repositório registra minha prática com Java Backend e mecanismos de segurança utilizando Spring Security.
