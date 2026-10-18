@@ -41,6 +41,20 @@ O projeto foi utilizado durante meus estudos de segurança em aplicações Backe
 
 > **Observação:** algumas integrações externas dependem de configurações adicionais e credenciais próprias. Os fluxos ainda não foram integralmente testados em ambiente de execução.
 
+
+### 🔒 Fluxo de autenticação e autorização do usuário
+
+O projeto aborda diferentes mecanismos para controlar o acesso dos usuários à API Forum Hub:
+
+- **Autenticação:** identificação do usuário por meio de suas credenciais, email e senha.
+- **JWT:** geração de tokens de acesso após a autenticação.
+- **Filtros de segurança:** validação dos tokens recebidos nas requisições dos usuaários.
+- **Refresh Token:** mecanismo para renovação do acesso sem exigir um novo login completo.
+- **Autorização:** controle das funcionalidades disponíveis de acordo com os perfis e permissões associados ao usuário.
+
+Com o **Spring Security**, esses mecanismos permitem separar a identificação do usuário das regras que determinam quais recursos ele pode acessar, garantindo segurança e acesso corretos.
+
+
 ## ⚙️ Configurações e variáveis de ambiente
 
 O projeto utiliza **MySQL** para persistência de dados, **SMTP** para envio de e-mails e configurações de **OAuth 2.0** para autenticação com GitHub e Google.
