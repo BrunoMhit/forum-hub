@@ -48,6 +48,14 @@ Exemplo de uma requisição `POST /topicos` com dados enviados em formato JSON n
 
 ![Exemplo de requisição POST no Postman](docs/CadastroTopico.jpg)
 
+
+### Autorização OAuth 2.0 com um perfil GitHub
+
+Tela de solicitação de autorização do aplicativo Forum Hub no site GitHub, mostrando uma etapa do fluxo OAuth 2.0
+
+![Tela de autorização OAuth do GitHub](docs/GithubAutorizacao.jpg)
+
+
 ## ⚙️ Configuração do projeto
 
 O Forum Hub utiliza o banco de dados MySQL para persistência de dados, SMTP para envio de e-mails e OAuth 2.0 para integração com GitHub e Google.
