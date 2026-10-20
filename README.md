@@ -38,7 +38,7 @@ O Forum Hub foi desenvolvido durante dois cursos da plataforma **Alura**, com fo
 
 ### Visão geral
 
-O GIF abaixo apresenta a estrutura do projeto e alguns trechos das implementações de autenticação e segurança
+O GIF abaixo apresenta a organização do Forum Hub na plataforma IntelliJ IDEA, mostrando a estrutura de pacotes, classes e alguns pequenos trechos de código relacionados à autenticação, autorização e principalmente, à segurança da API
 
 ![Visão geral do Forum Hub](docs/ForumHubDemo.gif)
 
