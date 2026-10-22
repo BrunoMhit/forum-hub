@@ -26,7 +26,7 @@ public class TokenService {
                     .withExpiresAt(expiracao(30))
                     .sign(algorithm);
         } catch (JWTCreationException exception){
-            throw new RegraDeNegocioException("Erro ao gerar token JWT de acesso!");
+            throw new RegraDeNegocioException("Erro ao gerar token JWT de acesso do Forum Hub!");
         }
     }
 

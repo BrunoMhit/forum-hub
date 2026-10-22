@@ -44,7 +44,7 @@ O GIF abaixo apresenta a organização do Forum Hub na plataforma IntelliJ IDEA,
 
 ### Requisição HTTP com a ferramenta Postman
 
-Exemplo de uma requisição `POST /topicos` com dados enviados em formato JSON no postman
+Exemplo de uma requisição `POST /topicos` realizada na ferramenta Postman, demonstrando assim oevnio de dados me formato JSON para o cadastro de um tópico no Forum Hub
 
 ![Exemplo de requisição POST no Postman](docs/CadastroTopico.jpg)
 

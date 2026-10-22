@@ -34,7 +34,7 @@ public class EmailService {
             helper.setSubject(assunto);
             helper.setText(conteudo, true);
         } catch(MessagingException | UnsupportedEncodingException e){
-            throw new RegraDeNegocioException("Erro ao enviar email");
+            throw new RegraDeNegocioException("Erro ao enviar email!");
         }
 
         enviadorEmail.send(message);
@@ -46,7 +46,7 @@ public class EmailService {
                 + "Por favor clique no link abaixo para verificar sua conta:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFICAR</a></h3>"
                 + "Obrigado,<br>"
-                + "Fórum Hub :).", usuario.getNomeCompleto(), URL_SITE + "/verificar-conta?codigo=" + usuario.getToken());
+                + "Fórum Hub :D.", usuario.getNomeCompleto(), URL_SITE + "/verificar-conta?codigo=" + usuario.getToken());
 
         enviarEmail(usuario.getUsername(), assunto, conteudo);
     }
