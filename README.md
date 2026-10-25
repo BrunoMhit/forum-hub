@@ -7,7 +7,7 @@ O Forum Hub foi desenvolvido durante dois cursos da plataforma **Alura**, com fo
 ## 🚀 Tecnologias utilizadas
 
 - **Backend:** Java, Spring Boot e Spring Data JPA
-- **Segurança:** Spring Security, OAuth 2.0, JWT, OpenID Connect (OIDC) e 2FA/TOTP
+- **Segurança:** Spring Security, JWT, OAuth 2.0, OpenID Connect (OIDC) e autenticação de dois fatores (2FA/TOTP)
 - **Banco de dados:** MySQL
 - **Integrações:** RestClient e SMTP
 - **Ferramentas:** Maven e Postman
@@ -19,7 +19,7 @@ O Forum Hub foi desenvolvido durante dois cursos da plataforma **Alura**, com fo
 - Cadastro e gerenciamento de usuários
 - Armazenamento de senhas com hash
 - Autenticação Stateless com JWT
-- Access Token e Refresh Token
+- Utilização de Acess Token e Refresh Token para gerenciamento desessões autenticadas
 - Filtros de autenticação e validação de tokens JWT
 - Controle de acesso por perfis, permissões e hierarquia de papéis de cada usuário
 
@@ -30,7 +30,7 @@ O Forum Hub foi desenvolvido durante dois cursos da plataforma **Alura**, com fo
 - Comunicação com serviços externos utilizando RestClient
 - Verificação de e-mail do usuário
 - Autenticação de dois fatores (2FA) com TOTP
-- Geração de QR Code e validação de códigos temporários para acesso
+- Geração de QR Code para configuração do 2FA e validação de códigos temporários de autenticação
 
 > **Observação:** As integrações com os serviços externos, como o Google e Github, possuem configurações que podem variar conforme o ambiente em que se está executando
 
